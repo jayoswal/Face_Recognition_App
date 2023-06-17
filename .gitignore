@@ -1,0 +1,5 @@
+# virtual env folder inside git folder
+virtual_env/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/

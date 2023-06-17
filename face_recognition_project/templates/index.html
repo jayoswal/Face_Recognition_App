@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+</head>
+<body>
+    <h1>Welcome to Face Recognition</h1>
+    <p>Rendering from app/views.py/index2 -- templates/index.html</p>
+
+    <img src="/static/logo.png" alt="">
+
+    <p>Image recommended method below-</p>
+
+    <img src="{% static 'logo.png' %}" alt="Logo Image">
+</body>
+</html>
