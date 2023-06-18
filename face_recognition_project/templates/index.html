@@ -8,12 +8,57 @@
 </head>
 <body>
     <h1>Welcome to Face Recognition</h1>
-    <p>Rendering from app/views.py/index2 -- templates/index.html</p>
 
-    <img src="/static/logo.png" alt="">
+    <form action="#" method="POST" enctype="multipart/form-data">
 
-    <p>Image recommended method below-</p>
+    {% csrf_token %}
+    {{ form.as_table }}
 
-    <img src="{% static 'logo.png' %}" alt="Logo Image">
+    {% if upload %}
+    
+    <table>
+        <!--Number of Face-->
+        <tr>
+            <td>Face Number</td>
+            {% for face_number in results.count %}
+                <td>{{ face_number }}</td>
+            {% endfor %}
+        </tr>
+
+        <!--Confidence-->
+        <tr>
+            <td>Face Detection Confidence</td>
+            {% for confidence in results.face_detect_confidence %}
+                <td>{{ confidence }}</td>
+            {% endfor %}
+        </tr>
+
+        <!--Face Name-->
+        <tr>
+            <td>Face Name</td>
+            {% for face_name in results.face_name %}
+                <td>{{ face_name }}</td>
+            {% endfor %}
+        </tr>
+
+        <!--Face Name Score-->
+        <tr>
+            <td>Name Score</td>
+            {% for name_score in results.face_name_score %}
+                <td>{{ name_score }}</td>
+            {% endfor %}
+        </tr>
+
+    </table>
+    
+    {% endif %}
+
+
+    <input type="submit" value="Upload">
+    </form> 
+
+    {% comment %} <p>Image recommended method below-</p>
+    <img src="{% static 'logo.png' %}" alt="Logo Image"> {% endcomment %}
+    
 </body>
 </html>
