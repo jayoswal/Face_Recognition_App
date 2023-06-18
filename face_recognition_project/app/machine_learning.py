@@ -62,7 +62,7 @@ def pipeline_model(path):
                 cv2.rectangle(image, (startx, starty), (endx, endy), (0, 255, 0), 3)
                 # put text
                 text = "{} : {:.2f} %".format(face_name, confidence*100)
-                cv2.putText(image, text, (startx, starty-10), cv2.FONT_HERSHEY_DUPLEX, 3, (0, 0, 255), 2)
+                cv2.putText(image, text, (startx, starty-10), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 255), 2)
                 
                 # append to machine learning result dict
                 count += 1
@@ -70,6 +70,13 @@ def pipeline_model(path):
                 machinelearning_result['face_detect_confidence'].append(confidence)
                 machinelearning_result['face_name'].append(face_name)
                 machinelearning_result['face_name_score'].append(face_score)
+                
+                
+                # save Processed image and cropped image
+                cv2.imwrite(os.path.join(settings.MEDIA_ROOT, "ml_output/processed.jpg"), image)
+                cv2.imwrite(os.path.join(settings.MEDIA_ROOT, "ml_output/face_cropped_image_{}.jpg".format(count)), face_cropped)
+                print("Images saved in media/ml_output")
+                
                 
                 
     return machinelearning_result

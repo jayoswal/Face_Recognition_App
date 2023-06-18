@@ -22,10 +22,21 @@ def index(request):
             img_obj = FaceRecognition.objects.get(pk=primary_key)
             image_path_db = str(img_obj.image)
             file_path = os.path.join(settings.MEDIA_ROOT, image_path_db)
-            results = pipeline_model(file_path)
-            print(results)
             
+            # apply ML on the image with path
+            results = pipeline_model(file_path)
+            
+            # update face name(s) after detection
+            detected_face_name = results['face_name'] if len(results['face_name']) > 0 else "No Faces Detected."
+            other_details_updated = FaceRecognition.objects.filter(id=primary_key).update(face_name=detected_face_name)
+            print("Other details Updated - " + str(other_details_updated))
+            print(results['face_name'])
+            
+            # print for reference
             print("[info] app - views - index, upload = True, with results")
+            
+            
+            # return statement
             return render(request, 'index.html', {'form' : form, 'upload' : True, 'results' : results})
     
     print("[info] app - views - index, upload = False")

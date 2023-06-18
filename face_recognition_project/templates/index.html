@@ -25,6 +25,14 @@
             {% endfor %}
         </tr>
 
+        <!--Detected Face Image-->
+        <tr>
+            <td>Detected Face Image</td>
+            {% for face_number in results.count %}
+                <td><img src="media/ml_output/face_cropped_image_{{ face_number}}.jpg" alt="Cropped Image "></td>
+            {% endfor %}
+        </tr>
+
         <!--Confidence-->
         <tr>
             <td>Face Detection Confidence</td>
@@ -48,8 +56,11 @@
                 <td>{{ name_score }}</td>
             {% endfor %}
         </tr>
-
     </table>
+
+    <div>
+        <img src="media/ml_output/processed.jpg" alt="Processed Image">
+    </div>
     
     {% endif %}
 
