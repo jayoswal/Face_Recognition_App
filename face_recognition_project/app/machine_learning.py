@@ -62,7 +62,7 @@ def pipeline_model(path):
                 cv2.rectangle(image, (startx, starty), (endx, endy), (0, 255, 0), 3)
                 # put text
                 text = "{} : {:.2f} %".format(face_name, confidence*100)
-                cv2.putText(image, text, (startx, starty-10), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 255), 2)
+                cv2.putText(image, text, (startx, starty-10), cv2.FONT_HERSHEY_DUPLEX, 0.8, (0, 0, 255), 2)
                 
                 # append to machine learning result dict
                 count += 1

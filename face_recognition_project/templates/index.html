@@ -5,71 +5,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Face Recognition</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Welcome to Face Recognition</h1>
 
-    <form action="#" method="POST" enctype="multipart/form-data">
+    <!--Navbar-->
+    <nav class="navbar navbar-dark" style="background-color: #165b90">
+        <div class="container">
+            <a href="/" class="navbar-brand">
+                <img src="{% static 'logo.png' %}" alt="Logo Image">
+                    FACE IDENTIFY
+            </a>
+        </div>
+    </nav>
 
-    {% csrf_token %}
-    {{ form.as_table }}
+    <!--Body-->
 
-    {% if upload %}
-    
-    <table>
-        <!--Number of Face-->
-        <tr>
-            <td>Face Number</td>
-            {% for face_number in results.count %}
-                <td>{{ face_number }}</td>
-            {% endfor %}
-        </tr>
+    <div class="container">
 
-        <!--Detected Face Image-->
-        <tr>
-            <td>Detected Face Image</td>
-            {% for face_number in results.count %}
-                <td><img src="media/ml_output/face_cropped_image_{{ face_number}}.jpg" alt="Cropped Image "></td>
-            {% endfor %}
-        </tr>
+        <br>
+        <h3 class="display-11" align="center">Upload Image to Recognize Person</h3>
+        <br>
 
-        <!--Confidence-->
-        <tr>
-            <td>Face Detection Confidence</td>
-            {% for confidence in results.face_detect_confidence %}
-                <td>{{ confidence }}</td>
-            {% endfor %}
-        </tr>
+        <form action="#" method="POST" enctype="multipart/form-data">
 
-        <!--Face Name-->
-        <tr>
-            <td>Face Name</td>
-            {% for face_name in results.face_name %}
-                <td>{{ face_name }}</td>
-            {% endfor %}
-        </tr>
+            {% csrf_token %}
 
-        <!--Face Name Score-->
-        <tr>
-            <td>Name Score</td>
-            {% for name_score in results.face_name_score %}
-                <td>{{ name_score }}</td>
-            {% endfor %}
-        </tr>
-    </table>
+            <!-- {{ form.as_table }} -->
+            <div class="input-group">
+                <label for="{{ form.image.id_for_label }}"></label>{{ form.image }}
+                <input type="submit" class="btn btn-outline-secondary" value="Display Face">
+            </div>
 
-    <div>
-        <img src="media/ml_output/processed.jpg" alt="Processed Image">
+        
+            {% if upload %}
+
+            
+            <hr>
+            <div class="row">
+
+                <div class="col">
+                        <img src="media/ml_output/processed.jpg" alt="Processed Image" class="img-fluid">
+                </div>
+
+                <div class="col">
+                    <table class="table table-hover">
+                        <!--Number of Face-->
+                        <tr>
+                            <th class="table-secondary">Face Number</th>
+                            {% for face_number in results.count %}
+                                <td>{{ face_number }}</td>
+                            {% endfor %}
+                        </tr>
+                
+                        <!--Detected Face Image-->
+                        <tr>
+                            <th class="table-secondary">Detected Face Image</th>
+                            {% for face_number in results.count %}
+                                <td><img src="media/ml_output/face_cropped_image_{{ face_number}}.jpg" alt="Cropped Image" class="img-fluid"></td>
+                            {% endfor %}
+                        </tr>
+                
+                        <!--Confidence-->
+                        <tr>
+                            <th class="table-secondary">Face Detection Confidence</th>
+                            {% for confidence in results.face_detect_confidence %}
+                                <td>{{ confidence }}</td>
+                            {% endfor %}
+                        </tr>
+                
+                        <!--Face Name-->
+                        <tr>
+                            <th class="table-secondary">Face Name</th>
+                            {% for face_name in results.face_name %}
+                                <td>{{ face_name }}</td>
+                            {% endfor %}
+                        </tr>
+                
+                        <!--Face Name Score-->
+                        <tr>
+                            <th class="table-secondary">Name Score</th>
+                            {% for name_score in results.face_name_score %}
+                                <td>{{ name_score }}</td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            
+            {% endif %}
+            <hr>
+            <div class="container">
+                <footer>
+                    <a href="clickonova.com">Clickonova</a>
+                </footer>
+            </div>
+        </form>
     </div>
-    
-    {% endif %}
 
+     
 
-    <input type="submit" value="Upload">
-    </form> 
-
-    {% comment %} <p>Image recommended method below-</p>
-    <img src="{% static 'logo.png' %}" alt="Logo Image"> {% endcomment %}
+    <!-- <p>Display Image Django method below-</p>
+    <img src="{% static 'logo.png' %}" alt="Logo Image"> -->
     
 </body>
 </html>
