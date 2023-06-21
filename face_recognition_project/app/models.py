@@ -1,13 +1,18 @@
 from django.db import models
 
 # Create your models here.
-
-class FaceRecognition(models.Model):
-    id = models.AutoField(primary_key=True)
-    record_date = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to = 'images/')
-    face_name = models.TextField(default="No Faces Detected.")
     
+class MarkAttendance(models.Model):
+    # employee_id = models.CharField()
+    employee_name = models.CharField()
+    # mark_date = models.DateField()
+    mark_time = models.TimeField()
+    shift = models.CharField(choices=(
+        ("Morning_In", "Morning_In"),
+        ("Morning_Out", "Morning_Out"),
+        ("Evening_In", "Evening_In"),
+        ("Evening_Out", "Evening_Out")
+    ))
     
     def __str__(self):
-        return str(self.record_date)
+        return str(self.employee_name)

@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+TOKEN_DIR = os.path.join(BASE_DIR, 'tokens')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'face_recognition_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'face_recognition',
-        'USER' : 'admin',
-        'PASSWORD' : '12345678'
+        'NAME': '<db_name>',
+        'USER' : '<username>',
+        'PASSWORD' : '<password>'
     }
 }
 
@@ -133,7 +133,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
-
-# Media
-MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL = '/media/'

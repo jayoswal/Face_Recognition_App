@@ -1,17 +1,17 @@
 
 
 var take_photo_button = document.getElementById("startbutton");
-setInterval(function () {take_photo_button.click();},3000);
+setTimeout(function () {take_photo_button.click();},4000);
 
 var submit_button = document.getElementById("submit");
-setInterval(function () {submit_button.click();},4000);
+setTimeout(function () {submit_button.click();},4500);
 
 (function() {
     // The width and height of the captured photo. We will set the
     // width to the value defined here, but the height will be
     // calculated based on the aspect ratio of the input stream.
   
-    var width = 480;    // We will scale the photo width to this
+    var width = 720;    // We will scale the photo width to this
     var height = 0;     // This will be computed based on the input stream
   
     // |streaming| indicates whether or not we're currently streaming
@@ -142,7 +142,7 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-    var fiveMinutes = 3,
+    var fiveMinutes = 5,
         display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
 };

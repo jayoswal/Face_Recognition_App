@@ -1,7 +1,7 @@
 from django.contrib import admin
-from app.models import FaceRecognition
+from app.models import MarkAttendance
 
 # Register your models here.
 
-admin.site.register(FaceRecognition)
+admin.site.register(MarkAttendance)
 

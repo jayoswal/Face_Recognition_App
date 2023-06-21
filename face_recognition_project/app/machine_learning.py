@@ -1,4 +1,5 @@
 # Import Libraries
+import datetime
 import numpy as np
 import cv2
 import pickle
@@ -70,12 +71,6 @@ def pipeline_model(path):
                 machinelearning_result['face_detect_confidence'].append(confidence)
                 machinelearning_result['face_name'].append(face_name)
                 machinelearning_result['face_name_score'].append(face_score)
-                
-                
-                # save Processed image and cropped image
-                cv2.imwrite(os.path.join(settings.MEDIA_ROOT, "ml_output/processed.jpg"), image)
-                cv2.imwrite(os.path.join(settings.MEDIA_ROOT, "ml_output/face_cropped_image_{}.jpg".format(count)), face_cropped)
-                print("Images saved in media/ml_output")
                 
                 
                 

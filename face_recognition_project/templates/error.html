@@ -23,42 +23,15 @@
 </head>
 <body>
     <div class="container" align="center" style="margin-top: 15%;">
-
-        {% if error_saving %}
-        <h1>Error Saving! Please try again</h1>
-        <h4>Still issue?  Call Jay - <a href="tel:+911234567">Call Now</a></h4>
-
-        {% else %}
-
-            {% if has_face %}
-            
-            <h1>Confirm</h1>
-            <form action="{% url 'save_atten' %}" method="POST" enctype="multipart/form-data" novalidate>
-                {% csrf_token %}
-                <!-- {{ form.as_table }} -->
-                        {{ form.as_div }}
-
-                <br>
-                <br>
-                <button type="submit" id="accept" class="btn btn-success">Accept</button>
-
-
-            {% else %}
-
-            <h1>No Face Detected, please try again</h1>
-            
-            {% endif %}
-
-        {% endif %}
+        <h2 style="color: red;">ERROR SAVING! Please try again.</h2>
     </div>
-        
-        <br>
-        <br>
         <div align="center">
         <input type="button" value="Scan Again" class="btn btn-outline-primary" onclick="location.href='{% url 'camera_photo' %}'">
+
         </div>
 
         
+    </div>
 </body>
 </html>
 
