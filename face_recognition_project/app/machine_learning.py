@@ -79,4 +79,4 @@ def pipeline_model(path):
                 
                 
                 
-    return machinelearning_result
+    return image, machinelearning_result

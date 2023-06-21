@@ -6,7 +6,45 @@ from django.conf import settings
 from app.models import FaceRecognition
 import os
 
+## new here
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from django.core.files import File
+from django.core.files.base import ContentFile
+from django.core.files.temp import NamedTemporaryFile
+from urllib.request import urlopen
+from django.core.files.storage import default_storage
+
 # Create your views here.
+
+def camera_photo(request):
+    if request.method == 'POST':
+        result = None
+        # delete imahe
+        try:
+            os.remove(img_save_path)
+        except:
+            pass
+        image_path = request.POST["src"]
+        image = NamedTemporaryFile()
+        urlopen(image_path).read()
+        image.write(urlopen(image_path).read())
+        image.flush()
+        image = File(image)
+        name = str(image.name).split('\\')[-1]
+        name += '.jpg'  # store image in jpeg format
+        image.name = name
+        with open('image.txt', 'w+') as file:
+            file.write(str(name))
+        img_save_path = os.path.join(settings.MEDIA_ROOT, "images/new_camera.jpg")
+        default_storage.save(img_save_path, ContentFile(urlopen(image_path).read()))
+        image, result = pipeline_model(img_save_path)
+
+        return render(request, 'result.html', {'result':result})
+    return render(request, 'camera_photo.html')
 
 def index(request):
     form = FaceRecognitionForm()
