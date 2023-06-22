@@ -27,7 +27,8 @@ SECRET_KEY = 'b!&8n@-%0847t2)hbnu3kyv@lz&co8m*$)=1w9x7wb+#yqwpi1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# FIXME - allowed host * for Railway app
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -86,9 +87,9 @@ WSGI_APPLICATION = 'face_recognition_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '<db_name>',
-        'USER' : '<username>',
-        'PASSWORD' : '<password>'
+        'NAME': 'face_recognition',
+        'USER' : 'admin',
+        'PASSWORD' : '12345678'
     }
 }
 
@@ -130,6 +131,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# Static root for Railway app
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/")
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]

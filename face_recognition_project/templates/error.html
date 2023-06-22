@@ -14,6 +14,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +27,7 @@
         <h2 style="color: red;">ERROR SAVING! Please try again.</h2>
     </div>
         <div align="center">
-        <input type="button" value="Scan Again" class="btn btn-outline-primary" onclick="location.href='{% url 'camera_photo' %}'">
+        <input type="button" value="Scan Again" class="scan_face_button" onclick="location.href='{% url 'camera_photo' %}'">
 
         </div>
 

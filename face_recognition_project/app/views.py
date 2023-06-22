@@ -54,6 +54,7 @@ def camera_photo(request):
     if request.method == 'POST':
         # TODO - Reduce call to Google Sheet API
         # TODO - Get all sheets operations in try except block
+        # TODO - Check for all errors on client side, e.g- no webcamera/video feed
         # FIXME - DB Cred
         # FIXME - use token for api
         # FIXME - tel:

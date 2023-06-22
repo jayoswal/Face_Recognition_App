@@ -12,7 +12,7 @@ setTimeout(function () {submit_button.click();},4500);
     // calculated based on the aspect ratio of the input stream.
   
     var width = 720;    // We will scale the photo width to this
-    var height = 0;     // This will be computed based on the input stream
+    var height = 720;     // This will be computed based on the input stream
   
     // |streaming| indicates whether or not we're currently streaming
     // video from the camera. Obviously, we start at false.
@@ -34,6 +34,10 @@ setTimeout(function () {submit_button.click();},4500);
       photo = document.getElementById('photo');
       formsrc = document.getElementById('webimg');
       startbutton = document.getElementById('startbutton');
+
+      // if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+      //   alert("YAYYY")
+      // }
   
       navigator.mediaDevices.getUserMedia({video: true, audio: false})
       .then(function(stream) {
@@ -110,7 +114,7 @@ setTimeout(function () {submit_button.click();},4500);
   })();
 
 
-//   TIMER FOR 3 SECONDS
+//   TIMER FOR 5 SECONDS
 function startTimer(duration, display) {
     var start = Date.now(),
         diff,
@@ -128,7 +132,7 @@ function startTimer(duration, display) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = minutes + ":" + seconds; 
+        display.textContent = minutes + ":" + seconds + "s"; 
 
         if (diff <= 0) {
             // add one second so that the count down starts at the full duration
