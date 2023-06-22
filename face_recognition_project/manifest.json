@@ -1,0 +1,24 @@
+{
+  "background_color": "#ffffff",
+  "description": "SKD-v1 Face Recognition Attendance App",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "SKD-v1",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "SKD-v1",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [
+    "business"
+  ],
+  "screenshots": [],
+  "icons": [],
+  "shortcuts": [
+    {
+      "name": "Home",
+      "url": "https://facerecognitionappv1-production.up.railway.app/",
+      "description": "Home Face App"
+    }
+  ]
+}
