@@ -10,8 +10,5 @@ __pycache__/
 # images
 *.jpg
 
-
-tokens/
-
 *.ipynb
 *.ipynb_checkpoints
