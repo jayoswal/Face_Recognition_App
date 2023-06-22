@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    {% block content %}
+    {% load static %}
+    <head>
+        <title>Camera</title>
+        <meta charset='utf-8'>
+    </head>
+    <body>
+        <div align="center">
+            <h1>Face Camera for</h1>
+            <h1 id="time"></h1>
+        </div>
+
+        <div class="contentarea" align="center">
+                <form method="POST" name="inputForm" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <div id="camera" class="camera">
+                        <video id="video">Video stream not available.</video>
+                        <button id="startbutton" type="button" hidden></button>
+                        <input id="webimg" value="" name="src" type="text" style="display: none;" hidden>
+                        <canvas id="canvas" hidden>
+                        </canvas>
+                    </div>
+                    <br>
+                    <div>
+                        <img id="photo" alt="your image">
+                    </div>
+                    <button type="submit" class="submit-button" id="submit" hidden></button>
+                </form>
+        </div>
+    </body>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module" src="{% static 'js/index.js' %}"></script>
+</html>

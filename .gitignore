@@ -6,3 +6,9 @@ __pycache__/
 
 # .DS_Store
 *.DS_Store*
+
+# images
+*.jpg
+
+*.ipynb
+*.ipynb_checkpoints

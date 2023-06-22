@@ -16,9 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-MEDIA_DIR = os.path.join(BASE_DIR, 'media')
-
-
+TOKEN_DIR = os.path.join(BASE_DIR, 'tokens')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -29,7 +27,8 @@ SECRET_KEY = 'b!&8n@-%0847t2)hbnu3kyv@lz&co8m*$)=1w9x7wb+#yqwpi1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# FIXME - allowed host * for Railway app
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -132,10 +131,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# Static root for Railway app
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/")
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
-
-# Media
-MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL = '/media/'
