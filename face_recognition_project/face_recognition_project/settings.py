@@ -17,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 TOKEN_DIR = os.path.join(BASE_DIR, 'tokens')
+SCANNED_IMG_TEMP_DATA = os.path.join(BASE_DIR, 'scanned_img_temp')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -25,7 +26,8 @@ TOKEN_DIR = os.path.join(BASE_DIR, 'tokens')
 SECRET_KEY = 'b!&8n@-%0847t2)hbnu3kyv@lz&co8m*$)=1w9x7wb+#yqwpi1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# debug false for Railway app
+DEBUG = False
 
 # FIXME - allowed host * for Railway app
 ALLOWED_HOSTS = ["*"]
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'face_recognition_project.urls'
@@ -77,21 +80,21 @@ WSGI_APPLICATION = 'face_recognition_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'face_recognition',
-        'USER' : 'admin',
-        'PASSWORD' : '12345678'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'face_recognition',
+#         'USER' : 'admin',
+#         'PASSWORD' : '12345678'
+#     }
+# }
 
 
 # Password validation
@@ -132,7 +135,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # Static root for Railway app
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
