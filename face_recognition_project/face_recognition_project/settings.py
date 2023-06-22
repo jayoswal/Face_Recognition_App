@@ -32,7 +32,8 @@ DEBUG = False
 # FIXME - allowed host * for Railway app
 ALLOWED_HOSTS = ["*"]
 
-
+# FIXME - allowed for Railway app
+CSRF_TRUSTED_ORIGINS = ['https://facerecognitionappv1-production.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
