@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from app.forms import *
 from app.machine_learning import pipeline_model
-from django.conf import settings
 import os
 
 ## new here
@@ -25,10 +24,10 @@ import pandas as pd
 global worksheet_month
 def get_worksheet_month():
     # Load google service account
-    gc = gspread.service_account(filename=os.path.join(settings.TOKEN_DIR,"employee-attendance-face-v2-f1f43921980b.json"))
+    gc = gspread.service_account(filename=os.path.join(settings.TOKEN_DIR,"employee-attendance-face-token-service.json"))
     
     # Read Google Sheet - 
-    spreadsheet = gc.open('Employee_Attendance_Face_v2')
+    spreadsheet = gc.open('Employee_Attendance_Face')
     
     # Read WorkSheet of month
     cur_month = datetime.now(timezone("Asia/Kolkata")).strftime('%B')
@@ -44,7 +43,7 @@ properties_dict = dict()
 def camera_photo(request):
     form = MarkAttendanceForm()
     # delete image
-    img_save_path = os.path.join(settings.MEDIA_ROOT, "images/new_camera.jpg")
+    img_save_path = os.path.join(settings.BASE_DIR, settings.SCANNED_IMG_TEMP_DATA,"new_camera.jpg")
     
     try:
         os.remove(img_save_path)
@@ -58,6 +57,7 @@ def camera_photo(request):
         # FIXME - DB Cred
         # FIXME - use token for api
         # FIXME - tel:
+        # FIXME - check for Railway & video - https://www.youtube.com/watch?v=aVpFgp63PX4
         
         image_path = request.POST["src"]
         image = NamedTemporaryFile()
@@ -68,7 +68,8 @@ def camera_photo(request):
         name = str(image.name).split('\\')[-1]
         name += '.jpg'  # store image in jpeg format
         image.name = name
-        with open('image.txt', 'w+') as file:
+        image_txt_path = os.path.join(settings.BASE_DIR, settings.SCANNED_IMG_TEMP_DATA, "image.txt")
+        with open(image_txt_path, 'w+') as file:
             file.write(str(name))
         default_storage.save(img_save_path, ContentFile(urlopen(image_path).read()))
         image, result = pipeline_model(img_save_path)
@@ -106,6 +107,7 @@ def camera_photo(request):
                      shift = "Evening_Out"
                 else:
                     shift = "Evening_In"
+            properties_dict['shift'] = shift
                 
             initial_dict = {
                 'employee_name': result['face_name'][0],
@@ -125,7 +127,7 @@ def save_atten(request):
         form = MarkAttendanceForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             emp_mark_time=request.POST.get('mark_time')
-            emp_shift=request.POST.get('shift')
+            emp_shift=properties_dict['shift']
             row = properties_dict['row']
             col = properties_dict['col']
             if emp_shift == "Morning_Out":
@@ -146,16 +148,3 @@ def save_atten(request):
 
 def index(request):
     return render(request, 'index.html')
-
-def get_worksheet_month():
-    # Load google service account
-    gc = gspread.service_account(filename=os.path.join(settings.TOKEN_DIR,"employee-attendance-face-v2-f1f43921980b.json"))
-    
-    # Read Google Sheet - 
-    spreadsheet = gc.open('Employee_Attendance_Face_v2')
-    
-    # Read WorkSheet of month
-    cur_month = datetime.now(timezone("Asia/Kolkata")).strftime('%B')
-    worksheet_month = spreadsheet.worksheet(cur_month)
-    
-    return worksheet_month
