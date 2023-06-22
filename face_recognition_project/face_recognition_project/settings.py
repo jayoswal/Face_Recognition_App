@@ -27,7 +27,7 @@ SECRET_KEY = 'b!&8n@-%0847t2)hbnu3kyv@lz&co8m*$)=1w9x7wb+#yqwpi1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # debug false for Railway app
-DEBUG = False
+DEBUG = True
 
 # FIXME - allowed host * for Railway app
 ALLOWED_HOSTS = ["*"]
