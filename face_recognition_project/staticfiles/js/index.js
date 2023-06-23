@@ -1,10 +1,10 @@
 
 
 var take_photo_button = document.getElementById("startbutton");
-setTimeout(function () {take_photo_button.click();},4000);
+setTimeout(function () {take_photo_button.click();},5000);
 
 var submit_button = document.getElementById("submit");
-setTimeout(function () {submit_button.click();},4500);
+setTimeout(function () {submit_button.click();},5500);
 
 (function() {
     // The width and height of the captured photo. We will set the
