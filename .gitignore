@@ -9,3 +9,6 @@ __pycache__/
 
 *.ipynb
 *.ipynb_checkpoints
+
+face_recognition_project/scanned_img_temp/new_camera.jpg
+face_recognition_project/scanned_img_temp/image.txt
