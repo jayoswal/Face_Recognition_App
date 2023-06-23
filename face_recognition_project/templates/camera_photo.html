@@ -7,11 +7,12 @@
         <meta charset='utf-8'>
     </head>
     <body>
-        <div align="center">
+        <div align="center" id="timer_info">
             <h1>Face Camera for</h1>
             <h1 id="time"></h1>
         </div>
-
+        <div id="loadingGif" style="display:none"  align="center"><img src="https://media.tenor.com/pYYnZhs8fc4AAAAC/hold-on-justin-bieber.gif"></div>
+        <!-- <div id="loadingGif" style="display:none"  align="center" class="tenor-gif-embed" data-postid="21748253" data-share-method="host" data-aspect-ratio="1.33891" data-width="100%"></div>    -->
         <div class="contentarea" align="center">
                 <form method="POST" name="inputForm" enctype='multipart/form-data'>
                     {% csrf_token %}
@@ -33,5 +34,6 @@
     {% endblock %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
     <script type="module" src="{% static 'js/index.js' %}"></script>
 </html>

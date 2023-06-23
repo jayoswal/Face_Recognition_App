@@ -68,7 +68,12 @@ setTimeout(function () {submit_button.click();},4500);
       }, false);
   
       startbutton.addEventListener('click', function(ev){
+
         takepicture();
+        document.getElementById('timer_info').style.display = "none";
+        document.getElementById('camera').style.display = "none";
+        document.getElementById('loadingGif').style.display = "block";
+
         ev.preventDefault();
       }, false);
   
