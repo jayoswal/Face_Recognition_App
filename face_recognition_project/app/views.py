@@ -23,15 +23,20 @@ import pandas as pd
 
 global worksheet_month
 def get_worksheet_month():
-    # Load google service account
-    gc = gspread.service_account(filename=os.path.join(settings.TOKEN_DIR,"employee-attendance-face-token-service.json"))
+    try:
+        # Load google service account
+        gc = gspread.service_account(filename=os.path.join(settings.TOKEN_DIR,"employee-attendance-face-token-service.json"))
+        
+        # Read Google Sheet - 
+        spreadsheet = gc.open('Employee_Attendance_Face')
+        
+        # Read WorkSheet of month
+        cur_month = datetime.now(timezone("Asia/Kolkata")).strftime('%B')
+        worksheet_month = spreadsheet.worksheet(cur_month)
+    except:
+        return render(request, 'custom_error.html', {'custom_error_message':"GSheet Error Check"})
+
     
-    # Read Google Sheet - 
-    spreadsheet = gc.open('Employee_Attendance_Face')
-    
-    # Read WorkSheet of month
-    cur_month = datetime.now(timezone("Asia/Kolkata")).strftime('%B')
-    worksheet_month = spreadsheet.worksheet(cur_month)
     
     return worksheet_month
 worksheet_month = get_worksheet_month()
@@ -74,10 +79,6 @@ def camera_photo(request):
         default_storage.save(img_save_path, ContentFile(urlopen(image_path).read()))
         image, result = pipeline_model(img_save_path)
         if len(result['count']) > 0:
-            
-            
-            
-            
             #  dynamic shift dynamic
             # if time is less then 15:15 i.e. 3:15 pm, Its Morning Slot,
             # Check if Morning_In is not None:
@@ -91,7 +92,12 @@ def camera_photo(request):
             mark_date = datetime.now(timezone("Asia/Kolkata")).strftime('%d-%B-%Y')
             row  = worksheet_month.find(mark_date).row
             properties_dict['row'] = row
-            col = worksheet_month.find(result['face_name'][0]).col
+            try:
+                col = worksheet_month.find(result['face_name'][0]).col
+            except:
+                error_message = "Ensure attendance sheet has column with your name."
+                return render(request, 'custom_error.html', {'custom_error_message':error_message})
+
             properties_dict['col'] = col
             # default shift
             shift = "Morning_In"

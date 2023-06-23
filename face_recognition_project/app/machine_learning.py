@@ -23,7 +23,7 @@ face_detector_model = cv2.dnn.readNetFromCaffe(os.path.join(STATIC_DIR, "models/
 face_feature_model = cv2.dnn.readNetFromTorch(os.path.join(STATIC_DIR, "models/openface.nn4.small2.v1.t7"))
 
 # Face Recognition - best_model_face_person.pkl
-face_recgonition_model = pickle.load(open(os.path.join(STATIC_DIR, "models/Big_DataSet_best_model_face_person_2.pkl"), mode="rb"))
+face_recgonition_model = pickle.load(open(os.path.join(STATIC_DIR, "models/Big_DataSet_best_model_face_person_3.pkl"), mode="rb"))
 
 
 # ### Pipeline model
