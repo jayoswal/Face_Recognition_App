@@ -1,13 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from app.forms import *
 from app.machine_learning import pipeline_model
 import os
 
 ## new here
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.core.files import File
@@ -18,7 +14,6 @@ from django.core.files.storage import default_storage
 from pytz import timezone 
 from datetime import datetime
 import gspread
-import pandas as pd
 # Create your views here.
 
 global worksheet_month
