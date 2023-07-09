@@ -14,6 +14,7 @@ from django.core.files.storage import default_storage
 from pytz import timezone 
 from datetime import datetime
 import gspread
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 global worksheet_month
@@ -40,6 +41,7 @@ worksheet_month = get_worksheet_month()
 global properties_dict
 properties_dict = dict()
 
+@login_required(login_url='accounts/login')
 def camera_photo(request):
     form = MarkAttendanceForm()
     # delete image
@@ -122,6 +124,7 @@ def camera_photo(request):
             
     return render(request, 'camera_photo.html', {'result':"No Face"})
 
+@login_required(login_url='accounts/login')
 def save_atten(request):
     
     if request.method == "POST":
@@ -146,6 +149,6 @@ def save_atten(request):
     
     return render(request, 'result.html', {'error_saving':True})
     
-
+@login_required(login_url='accounts/login')
 def index(request):
     return render(request, 'index.html')
