@@ -140,3 +140,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
+
+
+# FOR LOGIN
+LOGIN_REDIRECT_URL = '/'
